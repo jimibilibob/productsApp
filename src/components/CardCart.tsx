@@ -8,7 +8,7 @@ const value = useContext(AppContext);
   return (
     <View style={ styles.container }>
       <Text style={ styles.text }>{value.quantity} Item(s) in cart</Text>
-      <Text style={ styles.text }>USD {value.total}</Text>
+      <Text style={ styles.text }>{value.total} USD</Text>
     </View>
   )
 }

@@ -1,20 +1,46 @@
-import { StyleSheet,  View, SafeAreaView, StatusBar, ScrollView } from 'react-native'
-import React, { useContext } from 'react';
+import { StyleSheet, SafeAreaView, StatusBar, FlatList, ActivityIndicator } from 'react-native'
+import React, { useContext, useState, useEffect } from 'react';
 
 import CardProduct from '../components/CardProduct';
 import CardCart from '../components/CardCart';
 import { backgroundColor } from '../constants/styles';
 import AppContext from '../../App.context';
+import Product from '../models/Product';
 
 const ProductScreen = () => {
   const appContext = useContext(AppContext)
+  const [isLoading, setLoading] = useState(true);
+  const [products, setData] = useState(Array<Product>);
+
+  const getProducts = async () => {
+     try {
+      const response = await fetch('https://fakestoreapi.com/products');
+      const json = await response.json();
+      const products: Array<Product> = json
+      setData(products);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <CardCart></CardCart>
-      <ScrollView style={styles.scrollView}>
-          <CardProduct { ...{onPress: appContext.addProduct} }/>
-      </ScrollView>
+      {isLoading ? <ActivityIndicator/> 
+        : (<FlatList
+          data={products}
+          style={styles.flatList}
+          keyExtractor={({id}, index) => id.toString()}
+          renderItem={(item) => (
+            <CardProduct { ...{ product: item.item, onPress: appContext.addProduct} }/>
+          )}
+      />)}
     </SafeAreaView>
   )
 }
@@ -27,7 +53,7 @@ const styles = StyleSheet.create({
       paddingTop: StatusBar.currentHeight,
       backgroundColor: backgroundColor
     },
-    scrollView: {
+    flatList: {
       flex: 1
     }
 })

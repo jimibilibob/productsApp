@@ -28,7 +28,7 @@ export default function CardProduct(props: CardProductProps) {
             </View>
             <TouchableOpacity onPress={ press }>
                 <View style={ styles.addButtonContainer }>
-                    <FontAwesomeIcon icon={ faCartPlus } size={20} style={ styles.addButton }/>
+                    <FontAwesomeIcon icon={ faCartPlus } size={40} style={ styles.addButton }/>
                 </View>
             </TouchableOpacity>
         </View>
@@ -76,13 +76,11 @@ const styles = StyleSheet.create({
     addButtonContainer: {
         flex: 1,
         marginVertical: 20,
-        alignContent: 'center'
+        alignContent: 'center',
+        justifyContent: 'center'
     },
     addButton: {
         flex: 1,
-        fontSize: 23,
-        textAlignVertical: 'center',
-        fontWeight: 'bold',
         color: primaryColor,
         marginRight: 20
     }

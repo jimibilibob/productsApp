@@ -16,7 +16,7 @@ const ProductScreen = () => {
      try {
       const response = await fetch('https://fakestoreapi.com/products');
       const json = await response.json();
-      const products: Array<Product> = json
+      const products: Array<Product> = json.map( (item: Product) => item)
       setData(products);
     } catch (error) {
       console.error(error);

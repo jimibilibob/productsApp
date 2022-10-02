@@ -8,7 +8,7 @@ export default function App() {
   const addProduct = (price: number) => {
     setState({
       quantity: (state.quantity + 1),
-      total: (state.total + price)
+      total: Number((state.total + price).toFixed(2))
     })
   }
 

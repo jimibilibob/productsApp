@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
-import { textColor, backgroundColor } from '../constants/styles';
+import { textColor } from '../constants/styles';
 import AppContext from '../../App.context';
 
 const CardCart = () => {

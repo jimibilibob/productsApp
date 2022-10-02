@@ -1,24 +1,19 @@
 import { StyleSheet,  View, SafeAreaView, StatusBar, ScrollView } from 'react-native'
-import React from 'react';
+import React, { useContext } from 'react';
 
 import CardProduct from '../components/CardProduct';
 import CardCart from '../components/CardCart';
 import { backgroundColor } from '../constants/styles';
+import AppContext from '../../App.context';
 
 const ProductScreen = () => {
+  const appContext = useContext(AppContext)
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <CardCart></CardCart>
       <ScrollView style={styles.scrollView}>
-          <CardProduct/>
-          <CardProduct/>
-          <CardProduct/>
-          <CardProduct/>
-          <CardProduct/>
-          <CardProduct/>
-          <CardProduct/>
-          <CardProduct/>
-          <CardProduct/>
+          <CardProduct { ...{onPress: appContext.addProduct} }/>
       </ScrollView>
     </SafeAreaView>
   )

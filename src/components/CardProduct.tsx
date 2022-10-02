@@ -1,7 +1,18 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { imageBackgroundColor, textColor } from '../constants/styles';
 
-export default function CardProduct() {
+type CardProductProps = {
+    onPress: (price: number) => void;
+}
+
+export default function CardProduct(props: CardProductProps) {
+    const { onPress } = props
+
+    const press = () => {
+        console.log('Pressed');
+        onPress(5)
+    }
+
     return (
         <View style={ styles.container }>
             <View style={ styles.imageBackground }>
@@ -11,7 +22,7 @@ export default function CardProduct() {
                 <Text style={ styles.productDataText }>Gamer Chair</Text>
                 <Text style={ styles.productDataText }>USD 330</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={ press }>
                 <View style={ styles.addButtonContainer }>
                     <Text style={ styles.addButton }>Add</Text>
                 </View>

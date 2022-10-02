@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { textColor, backgroundColor } from '../constants/styles';
+import AppContext from '../../App.context';
 
 const CardCart = () => {
+const value = useContext(AppContext);
   return (
     <View style={ styles.container }>
-      <Text style={ styles.text }>4 Item(s) in cart</Text>
-      <Text style={ styles.text }>USD 1020</Text>
+      <Text style={ styles.text }>{value.quantity} Item(s) in cart</Text>
+      <Text style={ styles.text }>USD {value.total}</Text>
     </View>
   )
 }

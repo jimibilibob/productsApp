@@ -14,10 +14,8 @@ const ProductScreen = () => {
 
   const getProducts = async () => {
      try {
-      const response = await fetch('https://fakestoreapi.com/products');
-      const json = await response.json();
-      const products: Array<Product> = json.map( (item: Product) => item)
-      setData(products);
+      const response = await fetch('https://fakestoreapi.com/products').then( res => res.json() );
+      setData(response as Array<Product>);
     } catch (error) {
       console.error(error);
     } finally {
@@ -50,7 +48,7 @@ export default ProductScreen
 const styles = StyleSheet.create({
     safeArea: {
       flex: 1,
-      paddingTop: StatusBar.currentHeight,
+      paddingTop: 0,
       backgroundColor: backgroundColor
     },
     flatList: {

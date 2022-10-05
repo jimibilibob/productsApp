@@ -20,7 +20,7 @@ export default function CardProduct(props: CardProductProps) {
     return (
         <View style={ styles.container }>
             <View style={ styles.imageBackground }>
-                <Image source={{uri: product.image}} resizeMode={'cover'}  style={ styles.image }></Image>
+                <Image source={{uri: product.image}} resizeMode={'contain'}  style={ styles.image }></Image>
             </View>
             <View style={ styles.productData }>
                 <Text style={ styles.productNameText }>{ product.title }</Text>
